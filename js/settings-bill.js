@@ -47,6 +47,10 @@ billButton.addEventListener("click",finalBillSetting);
 // * check the value thresholds and display the total value in the right color.
 
 function finalBillSetting(){
+
+    totalElem3.classList.remove("warning")
+    totalElem3.classList.remove("danger")
+
     var tickedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked")
     if (tickedRadioBtn){
         var settingsBillItemType = tickedRadioBtn.value
@@ -72,11 +76,23 @@ function finalBillSetting(){
 
 function updateBillSetting (){
 
+    totalElem3.classList.remove("warning")
+    totalElem3.classList.remove("danger")
+
     callCostSetting = Number(callCostElem.value);
     smsCostSetting = Number(smsCostElem.value);
     warningLevelSetting = Number(warningLevelElem.value);
     criticalLevelSetting = Number(criticalLevelElem.value);
 
+    var totalSettings = callTotalSettings + smsTotalSettings;
+
+    if (totalSettings >= warningLevelSetting){
+        totalElem3.classList.add("warning")
+    }
+    if (totalSettings >= criticalLevelSetting){
+        totalElem3.classList.add("danger")
+    }
+    
 }
 
 
